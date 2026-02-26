@@ -20,9 +20,9 @@
                             @if($note->title)
                                 <h6 class="fw-bold mb-2 text-dark">{{ $note->title }}</h6>
                             @endif
-                            <p class="mb-2 text-secondary note-content">
-                                {{ $note->content }}
-                            </p>
+                            <div class="mb-2 text-secondary note-content">
+                                {!! $note->content !!}
+                            </div>
                         </div>
 
                         <div class="note-actions d-flex justify-content-end gap-1">

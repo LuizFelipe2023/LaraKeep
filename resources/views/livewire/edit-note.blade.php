@@ -1,58 +1,60 @@
 <div class="container py-5">
     <link rel="stylesheet" href="{{ asset('css/notes/edit.css') }}">
+    
     <div class="row justify-content-center">
         <div class="col-12 col-md-10 col-lg-8">
-            
-            <h5 class="text-muted mb-4 text-center fw-light">Editar Nota</h5>
+            <h5 class="keep-page-title text-center">Editar Nota</h5>
 
-            <div class="keep-edit-card">
+            <div class="keep-edit-card shadow-lg">
                 <form wire:submit.prevent="save">
                     
-                    <div class="d-flex flex-column">
+                    <div class="d-flex flex-column border-bottom" style="border-color: var(--keep-border) !important;">
                         <input type="text" 
                                wire:model.live="title" 
-                               class="form-control keep-input @error('title') is-invalid @enderror" 
+                               class="form-control keep-input border-0 shadow-none" 
                                placeholder="Título">
-                        @error('title')
-                            <span class="keep-error-text">{{ $message }}</span>
-                        @enderror
                     </div>
 
-                    <div class="d-flex flex-column">
-                        <textarea wire:model.live="content" 
-                                  class="form-control keep-textarea @error('content') is-invalid @enderror" 
-                                  placeholder="Nota" 
-                                  rows="8"></textarea>
-                        @error('content')
-                            <span class="keep-error-text">{{ $message }}</span>
-                        @enderror
+                    <div class="d-flex flex-column" wire:ignore>
+                        <div id="editor" class="keep-quill-editor">
+                            {!! $content !!}
+                        </div>
                     </div>
 
-                    <div class="d-flex align-items-center">
-                        <select wire:model.live="status" class="form-select keep-select">
-                            <option value="active">🟢 Ativa</option>
-                            <option value="closed">⚪ Arquivada</option>
+                    @error('content')
+                        <span class="keep-error-text">{{ $message }}</span>
+                    @enderror
+
+                    <div class="keep-select-container">
+                        <select wire:model.live="status" class="form-select keep-select shadow-none">
+                            <option value="active" class="bg-dark">🟢 Ativa</option>
+                            <option value="closed" class="bg-dark">⚪ Arquivada</option>
                         </select>
                     </div>
 
                     <div class="keep-footer">
-                        <a href="{{ route('notes.index') }}" class="btn-keep-text">
+                        <a href="{{ route('notes.index') }}" class="btn-keep-text text-decoration-none">
                             Cancelar
                         </a>
-                        <button type="submit" class="btn-keep-text" style="color: #202124;">
+                        <button type="submit" class="btn-keep-text btn-save-highlight">
                             Salvar
                         </button>
                     </div>
-
                 </form>
             </div>
 
-            @if ($errors->any())
-                <div class="mt-3 text-center">
-                    <small class="text-danger fw-bold" style="font-size: 0.7rem;">CORRIJA OS ERROS PARA SALVAR</small>
+            @error('title')
+                <div class="mt-2 text-center">
+                    <small class="text-danger">{{ $message }}</small>
                 </div>
-            @endif
-
+            @enderror
         </div>
     </div>
+
+    <script src="{{ asset('js/quill-setup.js') }}"></script>
+    <script>
+        document.addEventListener('livewire:init', () => {
+            initLaraKeepEditor('#editor', 'content', @this);
+        });
+    </script>
 </div>
