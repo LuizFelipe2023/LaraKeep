@@ -9,6 +9,18 @@
                 <span>Prosseguir para o Keep</span>
             </div>
 
+            @if(session()->has('success'))
+                <div class="keep-snackbar" id="global-alert">
+                    <span>{{ session('success') }}</span>
+                    <button type="button" class="btn btn-sm btn-link text-warning text-decoration-none fw-bold"
+                        onclick="this.parentElement.remove()">
+                        FECHAR
+                    </button>
+                </div>
+            @endif
+
+            <script src="{{ asset('js/global-alert.js') }}"></script>
+
             <form wire:submit.prevent="login">
                 <div class="keep-field">
                     <input type="email" wire:model="email" class="keep-input" placeholder="E-mail ou telefone">
@@ -20,11 +32,15 @@
                     @error('password') <small class="text-danger mt-1 d-block">{{ $message }}</small> @enderror
                 </div>
 
-                <div class="form-check mb-4">
-                    <input class="form-check-input" type="checkbox" wire:model="remember" id="remember">
-                    <label class="form-check-label text-secondary" for="remember">
-                        Lembrar de mim
-                    </label>
+                <div class="mb-4 d-flex justify-content-between align-items-center">
+                    <div class="form-check m-0">
+                        <input class="form-check-input" type="checkbox" wire:model="remember" id="remember">
+                        <label class="form-check-label text-secondary" for="remember">
+                            Lembrar de mim
+                        </label>
+                    </div>
+                    <a href="{{ route('password.request') }}" class="link-google" style="font-size: 0.9rem;">Esqueceu a
+                        senha?</a>
                 </div>
 
                 <div class="auth-footer">
