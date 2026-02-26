@@ -1,69 +1,119 @@
- :root {
-     --keep-bg: #f1f3f4;
-     --keep-border: #e0e0e0;
-     --keep-text-main: #202124;
-     --keep-text-secondary: #5f6368;
- }
+:root {
+    --keep-bg: #121212;               
+    --keep-surface: #1e1e1e;          
+    --keep-surface-hover: #2d2d2d;   
+    --keep-border: #333333;            
+    
+    --keep-text-main: #e8eaed;         
+    --keep-text-secondary: #9aa0a6;    
+    
+    --keep-accent: #fbbc04;            
+    --keep-accent-muted: rgba(251, 188, 4, 0.1);
+}
 
- body {
-     background-color: var(--keep-bg) !important;
-     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-     color: var(--keep-text-main);
-     overflow-y: scroll;
- }
+body {
+    background-color: var(--keep-bg) !important;
+    font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: var(--keep-text-main);
+    overflow-y: scroll;
+    margin: 0;
+    transition: background-color 0.3s ease;
+}
 
- .navbar {
-     background-color: #ffffff !important;
-     border-bottom: 1px solid var(--keep-border);
-     padding: 8px 15px !important;
-     height: 64px;
- }
+.navbar {
+    background-color: var(--keep-surface) !important;
+    border-bottom: 1px solid var(--keep-border);
+    padding: 8px 24px !important;
+    height: 64px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
 
- .navbar-brand {
-     font-size: 22px;
-     color: var(--keep-text-secondary) !important;
-     display: flex;
-     align-items: center;
-     font-weight: 400;
- }
+.navbar-brand {
+    font-size: 22px;
+    color: var(--keep-accent) !important; 
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+}
 
- .navbar-brand::before {
-     content: '💡';
-     margin-right: 10px;
-     font-size: 24px;
- }
+.navbar-brand::before {
+    content: '💡';
+    margin-right: 12px;
+    filter: drop-shadow(0 0 5px rgba(251, 188, 4, 0.3));
+}
 
- .nav-link {
-     color: var(--keep-text-secondary) !important;
-     border-radius: 50%;
-     transition: background 0.2s;
- }
+.nav-link {
+    color: var(--keep-text-main) !important;
+    padding: 10px 15px !important;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
 
- .keep-snackbar {
-     position: fixed;
-     bottom: 24px;
-     left: 24px;
-     z-index: 1060;
-     background-color: #323336;
-     color: #fff;
-     padding: 12px 24px;
-     border-radius: 4px;
-     box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14);
-     display: flex;
-     align-items: center;
-     justify-content: space-between;
-     min-width: 300px;
- }
+.nav-link:hover {
+    background-color: var(--keep-surface-hover);
+    color: var(--keep-accent) !important;
+}
 
- ::-webkit-scrollbar {
-     width: 8px;
- }
+.dropdown-menu {
+    background-color: var(--keep-surface);
+    border: 1px solid var(--keep-border);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+    padding: 8px;
+}
 
- ::-webkit-scrollbar-track {
-     background: transparent;
- }
+.dropdown-item {
+    color: var(--keep-text-main);
+    border-radius: 4px;
+    padding: 8px 16px;
+}
 
- ::-webkit-scrollbar-thumb {
-     background: #dadce0;
-     border-radius: 10px;
- }
+.dropdown-item:hover {
+    background-color: var(--keep-surface-hover);
+    color: var(--keep-accent);
+}
+
+.keep-snackbar {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 1060;
+    background-color: #2d2e31;
+    color: #fff;
+    padding: 14px 24px;
+    border-radius: 8px;
+    border-left: 4px solid var(--keep-accent);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 320px;
+    animation: snackbarIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+}
+
+@keyframes snackbarIn {
+    from { opacity: 0; transform: translateY(100%); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--keep-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3c4043;
+    border-radius: 10px;
+    border: 2px solid var(--keep-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #5f6368;
+}
+
+main {
+    padding-top: 20px;
+}

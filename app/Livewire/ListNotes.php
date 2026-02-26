@@ -10,18 +10,41 @@ use Livewire\WithPagination;
 class ListNotes extends Component
 {
     use WithPagination;
+
     public string $search = '';
 
     public string $status = '';
 
-    public function delete(Note $note)
+    public $showDeleteModal = false;
+
+    public $noteIdBeingDeleted = null;
+
+    public function confirmNoteDeletion($noteId)
     {
-        if ($note->user_id !== auth()->id()) {
-            abort(403, 'Ação não autorizada.');
+        $this->noteIdBeingDeleted = $noteId;
+        $this->showDeleteModal = true;
+    }
+
+    public function cancelDeletion()
+    {
+        $this->showDeleteModal = false;
+        $this->noteIdBeingDeleted = null;
+    }
+
+    public function deleteNote()
+    {
+        if ($this->noteIdBeingDeleted) {
+            $note = Note::find($this->noteIdBeingDeleted);
+            
+            if ($note) {
+                $note->delete();
+                
+                $this->dispatch('note-deleted', message: 'Nota excluída com sucesso!');
+            }
         }
 
-        $note->delete();
-        session()->flash('success', 'Nota excluída.');
+        $this->showDeleteModal = false;
+        $this->noteIdBeingDeleted = null; 
     }
 
     #[Layout('layouts.app')]
