@@ -4,12 +4,37 @@
     <div class="container-fluid page-content">
         <div class="search-area">
             <div class="keep-search-group shadow-sm">
-                <span class="text-muted">🔍</span>
+                <span class="search-icon">🔍</span>
+
                 <input type="text" placeholder="Pesquisar notas..." wire:model.live.debounce.400ms="search">
-                <a href="{{ route('notes.create') }}" class="btn btn-dark btn-sm rounded-pill px-3 ms-2 text-nowrap">
-                    + Nota
+
+                <div class="filter-divider"></div>
+                
+                <div class="filter-wrapper">
+                    <select wire:model.live="statusFilter" class="keep-search-select">
+                        <option value="">Todas</option>
+                        <option value="active">Ativas</option>
+                        <option value="closed">Arquivadas</option>
+                    </select>
+                </div>
+
+                <a href="{{ route('notes.create') }}" class="btn-new-note">
+                    <span class="plus-icon">+</span>
+                    <span>Nova Nota</span>
                 </a>
             </div>
+
+            <!-- Result count indicator -->
+            @if($search || $statusFilter)
+                <div class="search-stats">
+                    <span>{{ $notes->total() }} {{ $notes->total() == 1 ? 'nota encontrada' : 'notas encontradas' }}</span>
+                    @if($search || $statusFilter)
+                        <button wire:click="$set('search', ''); $set('statusFilter', '')" class="clear-filters">
+                            Limpar filtros ✕
+                        </button>
+                    @endif
+                </div>
+            @endif
         </div>
 
         <div class="notes-grid">
@@ -31,30 +56,42 @@
                                 {{ strtoupper($note->status) }}
                             </span>
 
-                            <a href="{{ route('notes.edit', $note) }}" class="btn-keep text-decoration-none">
+                            <a href="{{ route('notes.edit', $note) }}" class="btn-keep text-decoration-none" title="Editar">
                                 <small>✏️</small>
                             </a>
 
-                            <button type="button" wire:click="confirmNoteDeletion({{ $note->id }})" class="btn-keep">
+                            <button type="button" wire:click="confirmNoteDeletion({{ $note->id }})" class="btn-keep" title="Excluir">
                                 <small>🗑</small>
                             </button>
-
-
                         </div>
                     </div>
                 </div>
             @empty
                 <div class="empty-state">
                     <span class="empty-icon">💡</span>
-                    <h5 class="fw-light mt-3">As notas que você adicionar aparecerão aqui.</h5>
+                    <h5 class="fw-light mt-3">
+                        @if($search || $statusFilter)
+                            Nenhuma nota encontrada com esses filtros.
+                        @else
+                            As notas que você adicionar aparecerão aqui.
+                        @endif
+                    </h5>
+                    @if($search || $statusFilter)
+                        <button wire:click="$set('search', ''); $set('statusFilter', '')" class="btn btn-link mt-2">
+                            Limpar filtros
+                        </button>
+                    @endif
                 </div>
             @endforelse
         </div>
 
-        <div class="mt-5 d-flex justify-content-center">
-            {{ $notes->links() }}
-        </div>
+        @if($notes->hasPages())
+            <div class="mt-5 d-flex justify-content-center">
+                {{ $notes->links() }}
+            </div>
+        @endif
     </div>
+
     @if($showDeleteModal)
         <div class="modal d-block" tabindex="-1" style="background: rgba(0,0,0,0.7); backdrop-filter: blur(4px);">
             <div class="modal-dialog modal-dialog-centered modal-sm">

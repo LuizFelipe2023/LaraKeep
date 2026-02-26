@@ -13,7 +13,7 @@ class ListNotes extends Component
 
     public string $search = '';
 
-    public string $status = '';
+    public string $statusFilter = ''; 
 
     public $showDeleteModal = false;
 
@@ -47,15 +47,30 @@ class ListNotes extends Component
         $this->noteIdBeingDeleted = null; 
     }
 
+    public function updatedSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function updatedStatusFilter()
+    {
+        $this->resetPage();
+    }
+
     #[Layout('layouts.app')]
     public function render()
     {
         $notes = Note::query()
             ->where('user_id', auth()->id())
-            ->when($this->search, fn ($query) => $query->where('title', 'like', "%{$this->search}%")
-            )
-            ->when($this->status, fn ($query) => $query->where('status', $this->status)
-            )
+            ->when($this->search, function ($query) {
+                $query->where(function ($q) {
+                    $q->where('title', 'like', "%{$this->search}%")
+                      ->orWhere('content', 'like', "%{$this->search}%"); 
+                });
+            })
+            ->when($this->statusFilter, function ($query) { 
+                $query->where('status', $this->statusFilter);
+            })
             ->latest()
             ->paginate(10);
 
