@@ -1,0 +1,86 @@
+.auth-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 48px 40px;
+    width: 100%;
+    max-width: 520px;
+}
+
+.google-logo {
+    font-size: 24px;
+    font-weight: 500;
+    color: #5f6368;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.auth-header h1 {
+    font-size: 24px;
+    color: #202124;
+    font-weight: 400;
+}
+
+.keep-field {
+    margin-bottom: 16px;
+}
+
+.keep-input {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    font-size: 15px;
+    transition: border 0.2s;
+}
+
+.keep-input:focus {
+    outline: none;
+    border: 2px solid #1a73e8;
+    padding: 12px 14px;
+}
+
+.keep-input.is-invalid {
+    border-color: #d93025;
+}
+
+.auth-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 35px;
+}
+
+.btn-google {
+    background-color: #1a73e8;
+    color: #fff;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.btn-google:hover {
+    background-color: #1765cc;
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3);
+}
+
+.link-google {
+    color: #1a73e8;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.error-label {
+    color: #d93025;
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
+}

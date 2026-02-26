@@ -1,0 +1,101 @@
+.page-content {
+    padding-top: 20px;
+}
+
+.search-area {
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+}
+
+.keep-search-group {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 5px 15px;
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 1px 3px 1px rgba(60, 64, 67, .15);
+    display: flex;
+    align-items: center;
+    transition: box-shadow 0.2s;
+}
+
+.keep-search-group:focus-within {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.keep-search-group input {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none;
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.notes-grid {
+    column-count: 1;
+    column-gap: 16px;
+    width: 100%;
+}
+
+@media (min-width: 576px) {
+    .notes-grid {
+        column-count: 2;
+    }
+}
+
+@media (min-width: 992px) {
+    .notes-grid {
+        column-count: 3;
+    }
+}
+
+@media (min-width: 1200px) {
+    .notes-grid {
+        column-count: 4;
+    }
+}
+
+.note-item {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.note-card {
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+    transition: box-shadow 0.2s ease;
+    position: relative;
+}
+
+.note-card:hover {
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+}
+
+.note-actions {
+    opacity: 0;
+    padding: 8px;
+    transition: opacity 0.2s ease;
+}
+
+.note-card:hover .note-actions {
+    opacity: 1;
+}
+
+.btn-keep {
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #5f6368;
+    transition: background 0.2s;
+    border: none;
+    background: transparent;
+}
+
+.btn-keep:hover {
+    background-color: rgba(95, 99, 104, 0.1);
+    color: #202124;
+}
