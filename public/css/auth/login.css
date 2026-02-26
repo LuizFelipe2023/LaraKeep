@@ -1,73 +1,119 @@
 .auth-card {
-    background: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 48px 40px;
+    background: var(--keep-surface);
+    border: 1px solid var(--keep-border);
+    border-radius: 16px;
+    padding: 56px 48px;
     width: 100%;
     max-width: 450px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
 }
 
 .google-logo {
-    font-size: 24px;
-    font-weight: 500;
-    color: #5f6368;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--keep-accent);
     text-align: center;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
 }
 
 .auth-header {
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 40px;
 }
 
 .auth-header h1 {
-    font-size: 24px;
-    color: #202124;
-    margin-bottom: 8px;
+    font-size: 26px;
+    color: var(--keep-text-main);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.auth-header span {
+    color: var(--keep-text-secondary);
+    font-size: 1rem;
+    opacity: 0.8;
 }
 
 .keep-field {
-    margin-bottom: 16px;
+    margin-bottom: 24px;
 }
 
 .keep-input {
     width: 100%;
-    padding: 13px 15px;
-    border: 1px solid #dadce0;
-    border-radius: 4px;
+    padding: 14px 18px;
+    background-color: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid var(--keep-border);
+    border-radius: 8px;
     font-size: 16px;
-    transition: border 0.2s;
+    color: var(--keep-text-main) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.keep-input::placeholder {
+    color: var(--keep-text-secondary);
+    opacity: 0.4;
 }
 
 .keep-input:focus {
     outline: none;
-    border: 2px solid #1a73e8;
-    padding: 12px 14px;
+    border-color: var(--keep-accent);
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 0 0 4px rgba(251, 188, 4, 0.1);
+}
+
+.form-check-input {
+    background-color: var(--keep-bg);
+    border-color: var(--keep-border);
+}
+
+.form-check-input:checked {
+    background-color: var(--keep-accent);
+    border-color: var(--keep-accent);
 }
 
 .auth-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 40px;
+    margin-top: 32px;
 }
 
 .btn-google {
-    background-color: #1a73e8;
-    color: #fff;
+    background-color: var(--keep-accent); 
+    color: #000 !important; 
     border: none;
-    padding: 10px 24px;
-    border-radius: 4px;
-    font-weight: 500;
+    padding: 12px 32px;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(251, 188, 4, 0.2);
 }
 
 .btn-google:hover {
-    background-color: #1765cc;
+    background-color: #ffd04b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(251, 188, 4, 0.3);
 }
 
 .link-google {
-    color: #1a73e8;
+    color: var(--keep-text-secondary);
     text-decoration: none;
     font-weight: 500;
     font-size: 14px;
+    transition: color 0.2s;
+}
+
+.link-google:hover {
+    color: var(--keep-accent);
+}
+
+@media (max-width: 480px) {
+    .auth-card {
+        padding: 40px 24px;
+        border: none;
+        background: transparent;
+        box-shadow: none;
+    }
 }
