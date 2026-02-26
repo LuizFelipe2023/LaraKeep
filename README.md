@@ -18,13 +18,13 @@ Este projeto foi construído utilizando as ferramentas mais recentes do ecossist
 
 ## ✨ Funcionalidades
 
-* 🔐 **Autenticação Customizada:** Telas de Login e Registro baseadas no estilo *Google Accounts* utilizando componentes Livewire.
-* 📝 **Gestão de Notas (CRUD):** Criação, edição, visualização e exclusão de notas.
-* 🔍 **Filtro em Tempo Real:** Sistema de busca dinâmica por título e filtragem por status (Ativa/Arquivada).
-* 🎨 **Interface "Keep Style":** Design sem bordas (borderless), uso de sombras suaves (Material Design) e tipografia limpa.
-* 🛡️ **Segurança e Privacidade:** * Filtro de dados por usuário logado.
-    * Proteção contra exclusão e edição de notas de terceiros via validação de propriedade.
-* 🔔 **Feedback Visual:** Uso de `session()->flash()` para notificações de sucesso (Snackbars).
+* 🔐 **Autenticação Nativa:** Sistema de Login e Registro completo, desenvolvido internamente com Livewire e estilizado com estética Material Design.
+* 📝 **Gestão de Notas (CRUD):** Criação, edição, visualização e exclusão de notas de forma fluida.
+* 🔍 **Filtro Inteligente:** Busca dinâmica por título e filtragem por status (Ativa/Arquivada) em tempo real.
+* 🎨 **UI/UX Keep Style:** Interface limpa (borderless), uso de sombras estratégicas para profundidade e foco total no conteúdo da nota.
+* 🛡️ **Segurança de Dados:** * Isolamento de dados: cada usuário visualiza apenas suas próprias notas.
+    * Proteção de rotas e autorização de ações (apenas o dono pode editar ou deletar).
+* 🔔 **Feedback ao Usuário:** Notificações instantâneas via Snackbars (mensagens flash) para confirmação de ações.
 
 ---
 

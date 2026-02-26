@@ -5,9 +5,11 @@ namespace App\Livewire;
 use App\Models\Note;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ListNotes extends Component
 {
+    use WithPagination;
     public string $search = '';
 
     public string $status = '';
@@ -32,7 +34,7 @@ class ListNotes extends Component
             ->when($this->status, fn ($query) => $query->where('status', $this->status)
             )
             ->latest()
-            ->get();
+            ->paginate(10);
 
         return view('livewire.list-notes', [
             'notes' => $notes,
