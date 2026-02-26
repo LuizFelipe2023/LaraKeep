@@ -177,3 +177,47 @@ footer {
 ::-webkit-scrollbar-thumb:hover {
     background: #5f6368;
 }
+
+@media (max-width: 767.98px) {
+    .navbar-collapse {
+        background-color: var(--keep-surface);
+        margin: 0 -24px; 
+        padding: 10px 24px;
+        border-bottom: 1px solid var(--keep-border);
+    }
+
+    .dropdown-menu {
+        position: absolute !important; 
+        margin-top: 5px;
+        right: 10px;
+        left: auto;
+        width: 200px;
+        background-color: var(--keep-surface-hover);
+        border: 1px solid var(--keep-border);
+    }
+
+    .nav-link {
+        margin: 5px 0;
+    }
+
+    .keep-snackbar {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        min-width: auto;
+    }
+}
+
+.dropdown-item:active, .dropdown-item:focus {
+    background-color: var(--keep-accent-muted) !important;
+    color: var(--keep-accent) !important;
+}
+
+.navbar-toggler {
+    border-color: var(--keep-border) !important;
+}
+
+.navbar-toggler-icon {
+    filter: invert(1); 
+}
+
